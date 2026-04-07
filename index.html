@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -10,7 +11,7 @@
         :root {
             --carrot-orange: #ff8c00;
             --re-red: #cc0000;
-            --bg-overlay: rgba(10, 26, 31, 0.88); /* Глибокий бірюзовий */
+            --bg-overlay: rgba(10, 26, 31, 0.85); /* Темно-бірюзовий напівпрозорий */
             --ui-white: #e5e5e5;
         }
 
@@ -35,7 +36,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: brightness(0.25) blur(3px); /* Фон темний, щоб текст "дзвенів" */
+            filter: brightness(0.3) blur(2px); /* Робимо фон темнішим для читабельності */
             z-index: -2;
         }
 
@@ -44,22 +45,22 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            width: 130%;
-            height: 130%;
+            width: 120%;
+            height: 120%;
             background-image: url('banner.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            transform: translate(-50%, -50%) rotate(-8deg);
-            opacity: 0.06;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            opacity: 0.07;
             z-index: -1;
         }
 
-        /* Ефект ліній сканування (CRT-вайб) */
+        /* Ефект ліній сканування */
         .scanlines {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
             background-size: 100% 4px;
             z-index: 10;
             pointer-events: none;
@@ -70,71 +71,68 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0 60px;
+            padding: 0 50px;
         }
 
         .main-card {
             position: relative;
             z-index: 20;
-            max-width: 1150px;
+            max-width: 1100px;
             background: var(--bg-overlay);
             border: 2px solid var(--carrot-orange);
-            box-shadow: 0 0 60px rgba(0,0,0,0.95), inset 0 0 30px rgba(255, 140, 0, 0.05);
-            padding: 70px;
-            border-radius: 2px;
-            backdrop-filter: blur(12px);
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            padding: 60px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
         }
 
-        /* Тактична плашка зверху */
+        /* Декоративний елемент зверху */
         .main-card::before {
-            content: 'TACTICAL BROADCAST PROTOCOL // MISSION: SURVIVAL';
+            content: 'TACTICAL BROADCAST PROTOCOL // PAN MORKVYN';
             position: absolute;
-            top: -14px;
-            left: 40px;
+            top: -12px;
+            left: 30px;
             background: var(--carrot-orange);
             color: #000;
-            padding: 3px 20px;
+            padding: 2px 15px;
             font-weight: 700;
             font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .header {
             display: flex;
             align-items: center;
-            margin-bottom: 50px;
-            border-bottom: 1px solid rgba(255, 140, 0, 0.25);
-            padding-bottom: 30px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+            padding-bottom: 25px;
         }
 
         .header-logo {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             background-image: url('banner.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            margin-right: 40px;
+            margin-right: 35px;
             filter: drop-shadow(0 0 15px var(--carrot-orange));
         }
 
         h1 {
-            font-size: 4em;
+            font-size: 3.5em;
             margin: 0;
             color: var(--carrot-orange);
             text-transform: uppercase;
             letter-spacing: -1px;
-            font-weight: 700;
         }
 
         .content p {
-            font-size: 1.8em;
-            line-height: 1.5;
-            margin-bottom: 30px;
+            font-size: 1.7em;
+            line-height: 1.45;
+            margin-bottom: 25px;
             color: var(--ui-white);
             font-weight: 300;
-            text-align: left;
         }
 
         .highlight {
@@ -143,29 +141,28 @@
         }
 
         .warning-strip {
-            border-left: 8px solid var(--re-red);
-            background: rgba(204, 0, 0, 0.12);
-            padding: 25px 35px;
-            margin: 40px 0;
+            border-left: 6px solid var(--re-red);
+            background: rgba(204, 0, 0, 0.15);
+            padding: 20px 30px;
+            margin: 35px 0;
         }
 
         .warning-strip span {
             color: var(--re-red);
             font-weight: 700;
             display: block;
-            margin-bottom: 8px;
-            font-size: 1.2em;
-            letter-spacing: 3px;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            letter-spacing: 2px;
         }
 
         .footer {
-            margin-top: 60px;
+            margin-top: 50px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 1.2em;
-            letter-spacing: 10px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 1.1em;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            font-weight: 400;
         }
     </style>
 </head>
@@ -183,18 +180,18 @@
             </div>
 
             <div class="content">
-                <p>Вітаю! Це — моя особиста територія творчості. Весь контент транслюється <span class="highlight">виключно українською мовою</span>. Мої думки та коментарі не мають на меті когось образити, проте я залишаю за собою право захищати грядку від будь-яких проявів токсичності.</p>
+                <p>Вітаю! Це — моя особиста територія творчості. Весь контент тут транслюється <span class="highlight">виключно українською</span>. Мої думки, жарти та коментарі не мають на меті когось образити. Проте, я залишаю за собою право захищати себе та свою спільноту від будь-яких проявів токсичності.</p>
 
                 <div class="warning-strip">
                     <span>LIVE ADVISORY: 18+</span>
-                    <p style="margin: 0; font-size: 1.55em;">В ефірі може бути присутня <span class="highlight">ненормативна лексика</span>Це виключно емоційна складова реакції на гру, а не прояв агресії до глядачів.</p>
+                    <p style="margin: 0; font-size: 1.5em;">В ефірі може бути присутня <span class="highlight">ненормативна лексика</span>. Це виключно емоційна складова, а не прояв агресії.</p>
                 </div>
 
                 <p>Головна мета цих стрімів — поділитися з вами <span class="highlight">щирими враженнями</span>. Давайте проходити цей шлях разом, отримуючи задоволення від легендарних ігор!</p>
             </div>
 
             <div class="footer">
-                STATUS: BROADCAST READY // SUBJECT: mrcarrot13666
+                STATUS: SECURE // SUBJECT: PAN MORKVYN
             </div>
         </div>
     </div>
