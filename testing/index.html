@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>PORKVYN SYSTEM TEST</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+        :root {
+            --carrot: #ff8c00;
+            --teal: #0a1a1f;
+            --danger: #ff3333;
+            --ui-white: rgba(224, 224, 224, 0.8);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            font-family: 'Ubuntu', sans-serif;
+            background-color: #050a0c;
+        }
+
+        /* Твій банер на фоні з блюром */
+        .bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('banner.png');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.2) blur(8px);
+            z-index: -1;
+        }
+
+        /* Ефект "цифрового шуму" */
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .main-frame {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 20px solid transparent;
+            box-sizing: border-box;
+        }
+
+        .alert-box {
+            background: rgba(13, 30, 36, 0.9);
+            border: 2px solid var(--carrot);
+            padding: 50px 80px;
+            box-shadow: 0 0 50px rgba(0,0,0,1), inset 0 0 20px rgba(255, 140, 0, 0.2);
+            position: relative;
+        }
+
+        /* Пульсуючий індикатор */
+        .live-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--danger);
+            color: white;
+            padding: 5px 20px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: 14px;
+            animation: pulse 1s infinite alternate;
+        }
+
+        h1 {
+            color: var(--carrot);
+            font-size: 4em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .subtitle {
+            color: var(--ui-white);
+            font-size: 1.5em;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .terminal {
+            margin-top: 40px;
+            text-align: left;
+            font-family: monospace;
+            color: #44ff44;
+            font-size: 1.1em;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #44ff44;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+            from { opacity: 1; box-shadow: 0 0 10px var(--danger); }
+            to { opacity: 0.5; box-shadow: 0 0 30px var(--danger); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: #1a1a1a;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            position: absolute;
+            width: 40%;
+            height: 100%;
+            background: var(--carrot);
+            animation: progressMove 2s infinite linear;
+        }
+
+        @keyframes progressMove {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg"></div>
+    <div class="scanlines"></div>
+
+    <div class="main-frame">
+        <div class="alert-box">
+            <div class="live-tag">SYSTEM CALIBRATION</div>
+            <h1>ПАН МОРКВИН</h1>
+            <div class="subtitle">ТЕСТУВАННЯ СИСТЕМ ВИЖИВАННЯ</div>
+            
+            <div class="terminal">
+                > INITIALIZING SONY A6400... [OK]<br>
+                > CALIBRATING SONAR AUDIO... [OK]<br>
+                > OPTIMIZING AV1 ENCODER... [IN PROGRESS]<br>
+                > CARROT NUTRIENTS LEVEL... [100%]<br>
+                > STATUS: ПРОВОДЯТЬСЯ ТЕХНІЧНІ РОБОТИ<span class="cursor"></span>
+            </div>
+
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

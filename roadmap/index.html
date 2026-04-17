@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap: Стежка Пана Морквина у Всесвіті RE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Special+Elite&family=Oswald:wght@400;700&display=swap');
+
+        :root {
+            --re-red: #8b0000;
+            --re-red-glow: #ff0000;
+            --carrot-orange: #F2B666;
+            --bg-dark: #050505;
+            --bg-blue: #000666;
+            --ui-blue: #00a8ff;
+			   --carrot-orange: #ff8c00;
+   			--bg-teal: #0a1a1f;
+    			--tape-yellow: #f0c419;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ccc;
+            font-family: 'Ubuntu', 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 80%),
+                url('./banner_for_roadmap.png');
+			background-repeat: no-repeat;
+    		background-position: center;
+   			background-size: cover;
+  			background-attachment: fixed;
+    		background-color: #0a1a1f;
+        }
+
+        /* Ефект сканування монітора */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 1000;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .header {
+            text-align: center;
+            padding: 10px 5px;
+            border-bottom: 2px solid var(--re-red);
+            background: linear-gradient(to bottom, var(--bg-dark), var(--bg-teal))
+        }
+
+        .header h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 4.5em;
+            color: var(--re-red);
+            text-shadow: 0 0 15px var(--re-red-glow);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            letter-spacing: 3px;
+            color: var(--carrot-orange);
+            text-transform: uppercase;
+        }
+
+        .roadmap-container {
+            position: relative;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 10px 5px;
+        }
+
+        /* Центральна лінія */
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--carrot-orange), var(--re-red), #333);
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+        }
+
+        .stage {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stage:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content {
+            width: 40%;
+            padding: 10px;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #333;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,1);
+            transition: 0.3s;
+        }
+
+        .stage:hover .content {
+            border-color: var(--re-red);
+            transform: scale(1.05);
+        }
+
+        .content h3 {
+            margin: 0;
+            color: var(--re-red);
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .content p {
+            font-family: 'Special Elite', sans-serif;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        /* Точка на карті */
+        .point {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #111;
+            border: 4px solid var(--re-red);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        /* Маскот на старті */
+        .mascot-token {
+            position: absolute;
+            left: 50%;
+            top: -20px;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .mascot-token img {
+            width: 70px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--carrot-orange);
+            box-shadow: 0 0 20px var(--carrot-orange);
+            background: var(--bg-dark);
+        }
+
+        .status-badge {
+            background: var(--carrot-orange);
+            color: black;
+            padding: 2px 10px;
+            font-weight: bold;
+            font-size: 0.8em;
+            display: block;
+            margin-top: 5px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, -15px); }
+        }
+
+        .glow-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--re-red);
+            top: 50%;
+            z-index: 1;
+        }
+
+        .phase-tag {
+            color: var(--ui-blue);
+            font-size: 0.8em;
+            letter-spacing: 2px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--re-red);
+            font-size: 1.1em;
+            border-top: 1px solid #222;
+        }
+    </style>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    // Повідомляємо Telegram, що додаток готовий
+    window.Telegram.WebApp.ready();
+    // Розширюємо додаток на весь екран
+    window.Telegram.WebApp.expand();
+</script>
+</head>
+<body>
+
+    <div class="header">
+        <p>Project: Biohazard | Subject: mrcarrot13666</p>
+        <h1>СТЕЖКА ЖАХУ</h1>
+        <p>Хронологія проходження Resident Evil</p>
+    </div>
+
+    <div class="roadmap-container">
+        
+        <!-- ПАН МОРКВИН НА СТАРТІ -->
+        <div class="mascot-token">
+            <!-- Заміни src на посилання на своє лого, якщо завантажиш в мережу -->
+            <img src="./mascot_re_roadmap_first.png" alt="Mr. Carrot">
+            <span class="status-badge">ПАН МОРКВИН ТУТ</span>
+        </div>
+
+        <!-- STAGE 1 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 01: THE ORIGINS</span>
+                <h3>Resident Evil 1 Remake</h3>
+                <p>Повернення в маєток Спенсера. Класичні загадки, фіксована камера та справжній олдскульний жах</p>
+            </div>
+            <div class="point"></div>
+        </div>
+		
+        <!-- STAGE 2 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 02: THE OUTBREAK</span>
+                <h3>Resident Evil 2 Remake</h3>
+                <p>Перша зупинка. Поліцейська дільниця Раккун-Сіті. Знайомство з Леоном та жахливим Тіраном. Початок легенди</p>
+            </div>
+            <div class="point" style="border-color: var(--carrot-orange); box-shadow: 0 0 15px var(--carrot-orange);"></div>
+        </div>
+
+        <!-- STAGE 3 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 03: THE ESCAPE</span>
+                <h3>Resident Evil 3 Remake</h3>
+                <p>Немезис вже наступає на п'яти. Хаос на вулицях міста. Динамічне виживання під вибухи та крики зомбі</p>
+            </div>
+            <div class="point"></div>
+        </div>
+
+        <!-- STAGE 4 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 04: THE RESCUE</span>
+                <h3>Resident Evil 4 Remake</h3>
+                <p>Іспанське селище, культисти та порятунок Ешлі. Бруталістична пригода Леона Кеннеді</p>
+            </div>
+            <div class="point"></div>
+        </div>
+
+        <!-- STAGE 5 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 05: NEW NIGHTMARE</span>
+                <h3>Resident Evil 7: Biohazard</h3>
+                <p>Вид від першої особи. Луїзіана. Божевільна родина Бейкерів. Максимальний рівень стресу для Морквина</p>
+            </div>
+            <div class="point"></div>
+        </div>
+
+        <!-- STAGE 6 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 06: THE VILLAGE</span>
+                <h3>Resident Evil Village</h3>
+                <p>Замок Дімітреску в селі, перевертні та фінал історії Ітана Вінтерса</p>
+            </div>
+            <div class="point"></div>
+        </div>
+
+		  <!-- STAGE 7 -->
+        <div class="stage">
+            <div class="content">
+                <span class="phase-tag">PHASE 07: THE NEXT FRONTIER</span>
+                <h3>Resident Evil Requiem</h3>
+                <p>Контраст між брутальним досвідом і тендітною наляканістю, прогулянка межею двох реальностей. Тріумфальне завершення марафону</p>
+            </div>
+            <div class="point"></div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2026 MR. CARROT STREAMING SYSTEMS. ALL RIGHTS RESERVED. <br>
+        STATUS: INITIALIZING FIRST STREAM...
+    </div>
+
+</body>
+</html>
