@@ -10,11 +10,10 @@
         :root {
             --re-red: #8b0000;
             --re-red-glow: #ff0000;
-            --carrot-orange: #F2B666;
             --bg-dark: #050505;
             --bg-blue: #000666;
             --ui-blue: #00a8ff;
-			   --carrot-orange: #ff8c00;
+            --carrot-orange: #ff8c00;
    			--bg-teal: #0a1a1f;
     			--tape-yellow: #f0c419;
         }
@@ -208,9 +207,11 @@
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
     // Повідомляємо Telegram, що додаток готовий
-    window.Telegram.WebApp.ready();
-    // Розширюємо додаток на весь екран
-    window.Telegram.WebApp.expand();
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.ready();
+        // Розширюємо додаток на весь екран
+        window.Telegram.WebApp.expand();
+    }
 </script>
 </head>
 <body>

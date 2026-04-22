@@ -3,6 +3,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дисклеймер: Пан Морквин</title>
     <style>
         /* Імпорт шрифту Ubuntu */
@@ -11,8 +12,9 @@
         :root {
             --carrot-orange: #ff8c00;
             --re-red: #cc0000;
-            --bg-overlay: rgba(10, 26, 31, 0.85); /* Темно-бірюзовий напівпрозорий */
+            --bg-overlay: rgba(5, 14, 18, 0.7); /* Темно-бірюзовий напівпрозорий */
             --ui-white: #e5e5e5;
+            --bg-deep: #020607;
         }
 
         body, html {
@@ -22,7 +24,20 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Ubuntu', sans-serif;
-            background-color: #050a0c;
+            background: #020607 url('banner.png') center 42% / 122% auto no-repeat fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background: transparent;
+        }
+
+        body::after {
+            display: none;
         }
 
         /* Фонове зображення припасоване до екрану */
@@ -33,11 +48,51 @@
             width: 100%;
             height: 100%;
             background-image: url('banner.png');
-            background-size: cover;
-            background-position: center;
+            background-size: 122% auto;
+            background-position: center 42%;
             background-repeat: no-repeat;
-            filter: brightness(0.3) blur(2px); /* Робимо фон темнішим для читабельності */
-            z-index: -2;
+            filter: brightness(1.15) contrast(1.08) saturate(1.1);
+            opacity: 0.95;
+            z-index: 0;
+        }
+
+        .background-container::before,
+        .background-container::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: url('banner.png');
+            background-repeat: no-repeat;
+        }
+
+        .background-container::before {
+            inset: -4%;
+            background-size: 92% auto;
+            background-position: left 18% top 28%;
+            filter: blur(10px) brightness(1.08) saturate(1.04) contrast(1);
+            opacity: 0.26;
+            transform: scale(1.04);
+            mix-blend-mode: normal;
+        }
+
+        .background-container::after {
+            content: "";
+            position: absolute;
+            inset: -4%;
+            pointer-events: none;
+            background-image: url('banner.png');
+            background-repeat: no-repeat;
+            background-size: 92% auto;
+            background-position: right 18% bottom 22%;
+            filter: blur(10px) brightness(1.06) saturate(1.03) contrast(1);
+            opacity: 0.22;
+            transform: scale(1.04);
+            mix-blend-mode: normal;
+        }
+
+        .background-echo {
+            display: none;
         }
 
         /* Величезний напівпрозорий силует маскота */
@@ -52,8 +107,10 @@
             background-repeat: no-repeat;
             background-position: center;
             transform: translate(-50%, -50%) rotate(-5deg);
-            opacity: 0.07;
-            z-index: -1;
+            opacity: 0.01;
+            filter: blur(1px) saturate(1) brightness(1.02);
+            mix-blend-mode: normal;
+            z-index: 1;
         }
 
         /* Ефект ліній сканування */
@@ -62,8 +119,9 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
             background-size: 100% 4px;
-            z-index: 10;
+            z-index: 30;
             pointer-events: none;
+            opacity: 0.015;
         }
 
         .wrapper {
@@ -72,6 +130,8 @@
             justify-content: center;
             align-items: center;
             padding: 0 50px;
+            position: relative;
+            z-index: 20;
         }
 
         .main-card {
@@ -79,16 +139,30 @@
             z-index: 20;
             max-width: 1100px;
             background: var(--bg-overlay);
-            border: 2px solid var(--carrot-orange);
-            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            border: 1px solid rgba(255, 140, 0, 0.9);
+            box-shadow:
+                0 0 0 1px rgba(255, 140, 0, 0.18),
+                0 0 42px rgba(0, 0, 0, 0.9),
+                0 0 44px rgba(4, 95, 78, 0.18);
             padding: 60px;
             border-radius: 4px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(6px) saturate(1.02);
+                background: rgba(3, 6, 9, 0.64);
+                backdrop-filter: blur(3px) saturate(1.01);
+        }
+
+        .main-card::after {
+            content: "";
+            position: absolute;
+            inset: -30px;
+            pointer-events: none;
+            z-index: -1;
+              background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.01), rgba(0, 0, 0, 0) 72%);
         }
 
         /* Декоративний елемент зверху */
         .main-card::before {
-            content: 'TACTICAL BROADCAST PROTOCOL // mrcarrot13666';
+            content: 'TACTICAL BROADCAST PROTOCOL';
             position: absolute;
             top: -12px;
             left: 30px;
@@ -142,7 +216,7 @@
 
         .warning-strip {
             border-left: 6px solid var(--re-red);
-            background: rgba(204, 0, 0, 0.15);
+            background: linear-gradient(90deg, rgba(204, 0, 0, 0.02), rgba(90, 5, 5, 0.02));
             padding: 20px 30px;
             margin: 35px 0;
         }
@@ -164,11 +238,49 @@
             letter-spacing: 8px;
             text-transform: uppercase;
         }
+
+        @media (max-width: 1000px) {
+            .wrapper {
+                padding: 24px;
+            }
+
+            .main-card {
+                padding: 34px 28px;
+            }
+
+            .header {
+                gap: 14px;
+            }
+
+            .header-logo {
+                width: 90px;
+                height: 90px;
+                margin-right: 0;
+            }
+
+            h1 {
+                font-size: 2.3em;
+            }
+
+            .content p {
+                font-size: 1.25em;
+            }
+
+            .warning-strip p {
+                font-size: 1.15em !important;
+            }
+
+            .footer {
+                font-size: 0.9em;
+                letter-spacing: 4px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="background-container"></div>
+    <div class="background-echo"></div>
     <div class="silhouette-overlay"></div>
     <div class="scanlines"></div>
 
@@ -184,7 +296,7 @@
 
                 <div class="warning-strip">
                     <span>LIVE ADVISORY: 18+</span>
-                    <p style="margin: 0; font-size: 1.5em;">В ефірі може бути присутня <span class="highlight">ненормативна лексика</span>Це виключно емоційна складова, а не прояв агресії.</p>
+                    <p style="margin: 0; font-size: 1.5em;">В ефірі може бути присутня <span class="highlight">ненормативна лексика</span> Це виключно емоційна складова, а не прояв агресії.</p>
                 </div>
 
                 <p>Головна мета цих стрімів — поділитися з вами <span class="highlight">щирими враженнями</span>. Давайте проходити цей шлях разом, отримуючи задоволення від легендарних ігор!</p>
